@@ -25,7 +25,19 @@ module.exports = function (mongoose, compound) {
     // mongoose stuff
     //  still figuring this out
     // console.log( mongoose );
-    // var schema = mongoose.Schema({ name: String });
+    var postSchema = mongoose.Schema({
+		title: String,
+		desc: String
+    });
+    var Post = mongoose.model('Post', postSchema);
+    Post.modelName = 'Post';
+	compound.models.Post = Post;
+
+	var userSchema = mongoose.Schema({
+		name: String,
+		email: String
+    });
+
     // var Cat = mongoose.model('Cat', schema);
 
     // // expose model name for view helpers (resource-based helpers like formFor)
@@ -34,3 +46,10 @@ module.exports = function (mongoose, compound) {
     // // register model in compound.models registry
     // compound.models.Cat = Cat;
 };
+
+// var User = describe('User', function () {
+//     property('name', String);
+//     property('email', String);
+//     set('restPath', pathTo.Users);
+// });
+
