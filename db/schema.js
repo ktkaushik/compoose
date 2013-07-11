@@ -38,6 +38,10 @@ module.exports = function (mongoose, compound) {
 		email: String
     });
 
+    var User = mongoose.model('User', userSchema);
+    User.modelName = 'User';
+	compound.models.User = User;
+
     // var Cat = mongoose.model('Cat', schema);
 
     // // expose model name for view helpers (resource-based helpers like formFor)

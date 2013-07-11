@@ -11,7 +11,10 @@ action('new', function () {
 });
 
 action(function create() {
-    User.create(req.body.User, function (err, User) {
+    var user = new User(req.body.User);
+    console.log( "****************************************************************************************************" );
+    console.log( user );
+    user.save(function (err, User) {
         respondTo(function (format) {
             format.json(function () {
                 if (err) {
@@ -38,7 +41,7 @@ action(function create() {
 
 action(function index() {
     this.title = 'Users index';
-    User.all(function (err, users) {
+    User.find({}, function (err, users) {
         switch (params.format) {
             case "json":
                 send({code: 200, data: users});
@@ -48,7 +51,7 @@ action(function index() {
                     users: users
                 });
         }
-    });
+    })
 });
 
 action(function show() {
